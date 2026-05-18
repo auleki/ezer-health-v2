@@ -1,0 +1,48 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-dark: #0F2E23;
+  --color-brand-primary: #1A4D3E;
+  --color-brand-light: #FBFBF9;
+  --color-brand-accent: #E6F4EA;
+  --color-brand-muted: #F3F6F3;
+  
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-newsreader), ui-serif, Georgia, serif;
+}
+
+:root {
+  --background: #FBFBF9;
+  --foreground: #0F2E23;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+  }
+}
+@layer utilities {
+  @keyframes waveform {
+    0%, 100% { transform: scaleY(0.3); }
+    50% { transform: scaleY(1); }
+  }
+  @keyframes recording-pulse {
+    0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+  }
+  .animate-waveform {
+    animation: waveform 1s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    will-change: transform;
+    transform-origin: bottom;
+  }
+  .animate-recording {
+    animation: recording-pulse 2s infinite;
+  }
+}

@@ -1,0 +1,43 @@
+# Ezerhealthcare - Clinical Intelligence Ecosystem
+
+> Ezerhealthcare unites high-performance EHR workflows, automated remote monitoring, and ambient AI scribing into a single, clinical-grade ecosystem designed to eliminate data fragmentation.
+
+## About Ezerhealthcare
+Ezerhealthcare by Ezer Labs is an interoperable engine designed to eliminate healthcare fragmentation. We build clinical-first systems where artificial intelligence operates with surgical accuracy and ironclad security. Our mission is to reduce clinician burnout, eliminate administrative overhead ("pajama time"), and elevate patient care through real-time ambient intelligence.
+
+## Core Products & Modules
+
+### 1. Ambient AI Clinical Scribe (/clinical-scribe)
+- **Overview**: An ambient intelligence tool that listens to doctor-patient conversations in the background and generates perfectly structured SOAP notes in real-time.
+- **Key Features**: Automated SOAP categorization (Subjective, Objective, Assessment, Plan), medical terminology fine-tuning, HIPAA & GDPR secure with zero audio retention, SOC2 Type II certified.
+- **Interoperability**: Native one-click sync to Epic and Cerner via FHIR/HL7 standards.
+- **Workflow Steps**: 1. Record before entering exam room. 2. Converse naturally while AI filters out irrelevant small talk. 3. Review and approve formatted SOAP note in seconds.
+
+### 2. Intelligent EHR (/ehr)
+- **Overview**: Modern, lightning-fast Electronic Health Record interface built on zero-trust security and FHIR-native interoperability.
+- **Key Features**: One-click medication reconciliation, automated ICD-10/CPT coding assistance, real-time longitudinal patient timeline, longitudinal clinical graph with vital trends.
+- **Security**: Zero-trust architecture, end-to-end encryption, HIPAA compliant.
+
+### 3. Remote Patient Monitoring (RPM) (/rpm)
+- **Overview**: Automated physiological monitoring platform connecting cellular IoT medical devices directly to clinical dashboards.
+- **Key Features**: Real-time biometric tracking (blood pressure, glucose, SpO2, heart rate), automated CCM billing logs (CPT 99453, 99454, 99457), dynamic risk stratification, multi-channel alert escalation (SMS, Push, EHR inbox).
+
+## Technical Specifications & Compliance
+- **Interoperability**: FHIR-native APIs, HL7 v2/v3 support, Smart on FHIR compatible.
+- **Security**: HIPAA compliant, SOC2 Type II certified, GDPR compliant, zero-trust infrastructure with encrypted transit (TLS 1.3) and at-rest (AES-256).
+- **AI Ethics**: Zero patient audio retention after synthesis. No PHI training data leakage.
+
+## Leadership Team
+- **Samuel Nwatu**: Founder
+- **Ugochukwu Umerie**: Software Engineer
+- **Giwa Emmmanuel**: Software Engineer
+- **Muhammad Idris Abubakar**: Software Engineer
+
+## Direct Links & Resources
+- Official Website: https://ezerhealthcare.com
+- About Us: https://ezerhealthcare.com/about
+- AI Scribe Trial: https://clinex.tech
+- Contact & Demos: https://ezerhealthcare.com/contact
+- Insights & Blog: https://ezerhealthcare.com/blog
+- Privacy Policy: https://ezerhealthcare.com/privacy
+- Terms of Service: https://ezerhealthcare.com/terms
