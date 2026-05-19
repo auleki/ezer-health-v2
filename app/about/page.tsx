@@ -100,7 +100,7 @@ export default function AboutPage() {
       {/* Leadership Section */}
       <section className="py-24 px-6 bg-white border-t border-zinc-100">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-serif text-brand-dark mb-12 text-center md:text-left">Leadership</h2>
+          <h2 className="text-3xl md:text-4xl font-serif text-brand-dark mb-12 text-center md:text-left">Team</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">
             {[
               { name: "Samuel Nwatu", role: "Founder" },
