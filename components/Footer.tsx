@@ -114,9 +114,16 @@ export default function Footer() {
             </div>
           </div>
 
-          <p className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest text-center md:text-right leading-loose">
-            © 2024 EZERHEALTHCARE SYSTEMS. ALL RIGHTS RESERVED. <br className="md:hidden" />
-            NEXT-GEN PERFORMANCE COMPUTING.
+          <p className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest text-center md:text-right leading-loose flex items-center gap-3 flex-wrap justify-center md:justify-end">
+            <span>© 2024 EZERHEALTHCARE SYSTEMS. ALL RIGHTS RESERVED.</span>
+            <span className="hidden md:inline text-zinc-200">·</span>
+            <Link
+              href="/admin/newsletter"
+              className="opacity-20 hover:opacity-60 transition-opacity duration-300 text-[9px] tracking-widest text-zinc-400"
+              title="Admin"
+            >
+              ⬡
+            </Link>
           </p>
         </div>
       </div>

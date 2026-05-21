@@ -3,28 +3,36 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Search, ArrowLeft, LayoutGrid, ChevronDown, Menu, X } from "lucide-react";
+import { Search, ArrowLeft, ArrowRight, ChevronDown, Menu, X } from "lucide-react";
 
 export default function BlogNavbar() {
-  const [navMode, setNavMode] = useState<"blog" | "site">("blog");
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
 
-  const blogLinks = [
-    { label: "Research", href: "/blog/research" },
-    { label: "Clinical", href: "/blog/clinical" },
-    { label: "AI Insights", href: "/blog/ai-insights" },
-    { label: "Data Safety", href: "/blog/data-safety" },
-  ];
-
-  const siteLinks = [
+  const links = [
     { label: "About", href: "/about" },
     { label: "Products", href: "/#products", hasDropdown: true },
     { label: "Contact", href: "/contact" },
   ];
 
-  const currentLinks = navMode === "blog" ? blogLinks : siteLinks;
+  const productLinks = [
+    { 
+      label: "Clinical Scribe", 
+      href: "/clinical-scribe",
+      descriptions: ["Intelligent Medical Memory", "Automated SOAP Generation", "HIPAA & GDPR Secure"]
+    },
+    { 
+      label: "Unified EHR", 
+      href: "/ehr",
+      descriptions: ["Intelligent Adaptive Workflows", "Clinical Context, front and center", "Universal Sync"]
+    },
+    { 
+      label: "RPM & CCM", 
+      href: "/rpm",
+      descriptions: ["Real-time Vitals Monitoring", "Patient Engagement", "Continuous Biometric Streams"]
+    },
+  ];
 
   const scrollToSubscribe = () => {
     const element = document.getElementById("newsletter");
@@ -54,23 +62,44 @@ export default function BlogNavbar() {
           
           {/* Desktop Links */}
           <div className="hidden lg:flex items-center gap-8">
-            <div className="flex items-center gap-2 mr-4 border-r border-zinc-100 pr-6">
-              <button 
-                onClick={() => setNavMode(navMode === "blog" ? "site" : "blog")}
-                className="p-2 hover:bg-zinc-50 rounded-sm transition-colors group relative"
-                title={`Switch to ${navMode === "blog" ? "Site" : "Blog"} Links`}
-              >
-                <LayoutGrid className={`w-4 h-4 ${navMode === "site" ? "text-brand-primary" : "text-zinc-400"}`} />
-                <div className="absolute -bottom-1 -right-1 w-2 h-2 bg-brand-primary rounded-full border-2 border-white scale-0 group-hover:scale-100 transition-transform" />
-              </button>
-              <span className="text-[10px] font-bold uppercase tracking-widest text-zinc-300">
-                {navMode === "blog" ? "Blog Nav" : "Site Nav"}
-              </span>
-            </div>
-
             <div className="flex items-center gap-8 animate-in fade-in duration-300">
-              {currentLinks.map((link) => {
+              {links.map((link) => {
                 const isActive = pathname === link.href;
+                if (link.hasDropdown) {
+                  return (
+                    <div key={link.label} className="relative group">
+                      <button className="flex items-center gap-1 text-xs font-bold uppercase tracking-widest text-zinc-400 group-hover:text-brand-dark transition-colors cursor-pointer">
+                        {link.label}
+                        <ChevronDown className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" />
+                      </button>
+
+                      <div className="absolute top-full left-0 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                        <div className="w-[30rem] bg-white border border-zinc-100 shadow-2xl rounded-sm p-8 grid grid-cols-1 gap-6">
+                          {productLinks.map((item) => (
+                            <Link
+                              key={item.href}
+                              href={item.href}
+                              className="group/item block -m-4 p-4 rounded-sm hover:bg-zinc-50 transition-all text-left"
+                            >
+                              <div className="text-sm font-bold text-brand-dark flex items-center gap-2 mb-2 normal-case tracking-normal">
+                                {item.label}
+                                <ArrowRight className="w-3.5 h-3.5 opacity-0 -translate-x-2 group-hover/item:opacity-100 group-hover/item:translate-x-0 transition-all duration-300 text-brand-primary" />
+                              </div>
+                              <div className="flex flex-wrap gap-x-4 gap-y-1">
+                                {item.descriptions.map((desc, i) => (
+                                  <div key={i} className="text-[11px] text-zinc-400 flex items-center gap-1.5 whitespace-nowrap normal-case tracking-normal">
+                                    <div className="w-1 h-1 rounded-full bg-brand-primary/30" />
+                                    {desc}
+                                  </div>
+                                ))}
+                              </div>
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  );
+                }
                 return (
                   <Link 
                     key={link.label} 
@@ -80,7 +109,6 @@ export default function BlogNavbar() {
                     }`}
                   >
                     {link.label}
-                    {(link as any).hasDropdown && <ChevronDown className="w-3 h-3 opacity-40" />}
                   </Link>
                 );
               })}
@@ -90,19 +118,21 @@ export default function BlogNavbar() {
           <div className="flex items-center gap-4 md:gap-6">
             <button 
               onClick={() => setIsSearchOpen(true)}
-              className="text-zinc-400 hover:text-brand-dark transition-colors"
+              className="text-zinc-400 hover:text-brand-dark transition-colors cursor-pointer"
+              aria-label="Search"
             >
               <Search className="w-5 h-5" />
             </button>
             <button 
               onClick={scrollToSubscribe}
-              className="hidden sm:block bg-brand-dark text-white px-6 py-2 rounded-sm text-[10px] font-bold uppercase tracking-widest hover:bg-brand-primary transition-all shadow-sm"
+              className="hidden sm:block bg-brand-dark text-white px-6 py-2 rounded-sm text-[10px] font-bold uppercase tracking-widest hover:bg-brand-primary transition-all shadow-sm cursor-pointer"
             >
               Subscribe
             </button>
             <button 
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="lg:hidden p-2 text-brand-dark"
+              className="lg:hidden p-2 text-brand-dark cursor-pointer"
+              aria-label="Menu"
             >
               {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -121,7 +151,7 @@ export default function BlogNavbar() {
             />
             <button 
               onClick={() => setIsSearchOpen(false)}
-              className="text-[10px] font-bold uppercase tracking-widest text-zinc-400 hover:text-brand-dark transition-colors"
+              className="text-[10px] font-bold uppercase tracking-widest text-zinc-400 hover:text-brand-dark transition-colors cursor-pointer"
             >
               Close
             </button>
@@ -142,57 +172,74 @@ export default function BlogNavbar() {
           </Link>
           <button 
             onClick={() => setIsMenuOpen(false)}
-            className="p-2 text-white hover:text-brand-accent transition-colors"
+            className="p-2 text-white hover:text-brand-accent transition-colors cursor-pointer"
           >
             <X className="w-8 h-8" />
           </button>
         </div>
 
         <div className="flex-1 p-6 space-y-10 overflow-y-auto flex flex-col">
-          <div className="flex items-center justify-between bg-white/5 p-4 rounded-sm border border-white/10 shrink-0 mt-8">
-            <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">View Mode</span>
-            <button 
-              onClick={() => setNavMode(navMode === "blog" ? "site" : "blog")}
-              className="flex items-center gap-2 bg-brand-accent px-4 py-2 rounded-sm"
-            >
-              <LayoutGrid className="w-3 h-3 text-brand-dark" />
-              <span className="text-[10px] font-bold uppercase tracking-widest text-brand-dark">
-                {navMode === "blog" ? "Site Nav" : "Journal Nav"}
-              </span>
-            </button>
+          <div className="space-y-6 mt-8">
+            <h4 className="text-[10px] font-bold text-brand-accent uppercase tracking-[0.2em] border-b border-white/5 pb-4">
+              Site Navigation
+            </h4>
+            <div className="grid grid-cols-1 gap-6">
+              <Link 
+                href="/about" 
+                onClick={() => setIsMenuOpen(false)}
+                className="text-3xl font-serif text-white flex items-center justify-between group"
+              >
+                About
+                <ArrowLeft className="w-4 h-4 rotate-180 text-brand-accent opacity-0 group-hover:opacity-100 transition-all" />
+              </Link>
+              <Link 
+                href="/contact" 
+                onClick={() => setIsMenuOpen(false)}
+                className="text-3xl font-serif text-white flex items-center justify-between group"
+              >
+                Contact
+                <ArrowLeft className="w-4 h-4 rotate-180 text-brand-accent opacity-0 group-hover:opacity-100 transition-all" />
+              </Link>
+            </div>
           </div>
 
           <div className="space-y-6">
             <h4 className="text-[10px] font-bold text-brand-accent uppercase tracking-[0.2em] border-b border-white/5 pb-4">
-              {navMode === "blog" ? "Journal Categories" : "Site Navigation"}
+              Clinical Suite
             </h4>
-            <div className="grid grid-cols-1 gap-6">
-              {currentLinks.map((link) => (
-                <Link 
-                  key={link.label} 
-                  href={link.href} 
+            <div className="grid grid-cols-1 gap-8">
+              {productLinks.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
                   onClick={() => setIsMenuOpen(false)}
-                  className="text-3xl font-serif text-white flex items-center justify-between group"
+                  className="group block space-y-3"
                 >
-                  {link.label}
-                  <ArrowLeft className="w-4 h-4 rotate-180 text-brand-accent opacity-0 group-hover:opacity-100 transition-all" />
+                  <div className="text-2xl font-serif text-white group-hover:text-brand-accent transition-colors">{item.label}</div>
+                  <div className="flex flex-col gap-1.5">
+                    {item.descriptions.map((desc, i) => (
+                      <div key={i} className="text-[10px] text-zinc-500 font-bold uppercase tracking-widest flex items-center gap-2">
+                        <div className="w-1 h-1 rounded-full bg-brand-accent/20" />
+                        {desc}
+                      </div>
+                    ))}
+                  </div>
                 </Link>
               ))}
             </div>
           </div>
 
-          <div className="pt-8 mt-auto">
+          <div className="pt-8 mt-auto space-y-8">
             <button 
               onClick={scrollToSubscribe}
-              className="w-full bg-brand-accent text-brand-dark py-5 rounded-sm font-bold uppercase tracking-widest text-xs shadow-lg"
+              className="w-full bg-brand-accent text-brand-dark py-5 rounded-sm font-bold uppercase tracking-widest text-xs shadow-lg cursor-pointer"
             >
               Subscribe to Journal
             </button>
+            <div className="border-t border-white/5 opacity-40 pt-4">
+              <p className="text-[8px] font-bold text-zinc-500 uppercase tracking-widest">Ezerhealthcare Digital Journal</p>
+            </div>
           </div>
-        </div>
-        
-        <div className="p-6 border-t border-white/5 opacity-40 shrink-0">
-          <p className="text-[8px] font-bold text-zinc-500 uppercase tracking-widest">Ezerhealthcare Digital Journal</p>
         </div>
       </div>
     </>

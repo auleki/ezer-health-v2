@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { fontSans, fontSerif } from "@/lib/fonts";
 import "./globals.css";
+import AdminShortcut from "@/components/AdminShortcut";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://ezerhealthcare.com"),
@@ -99,6 +100,7 @@ export default function RootLayout({
       <body
         className={`${fontSans.variable} ${fontSerif.variable} min-h-full flex flex-col font-sans`}
       >
+        <AdminShortcut />
         {children}
       </body>
     </html>

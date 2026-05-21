@@ -1,0 +1,32 @@
+[
+  {
+    "id": "10ad48de-3f5f-476c-a65b-aeb05e7f711e",
+    "email": "chris.gretchen@gmail.com",
+    "subscribedAt": "2026-05-20T11:41:50.173Z",
+    "source": "blog-newsletter"
+  },
+  {
+    "id": "5d41ae47-07fc-4058-a8e5-cfc9be70e4c9",
+    "email": "anthony.smith@aol.com",
+    "subscribedAt": "2026-05-20T11:42:03.530Z",
+    "source": "blog-newsletter"
+  },
+  {
+    "id": "a9acb777-77fd-4c53-b4b9-b789aa2d7093",
+    "email": "maya.solid@gmail.com",
+    "subscribedAt": "2026-05-20T14:15:48.181Z",
+    "source": "admin-portal"
+  },
+  {
+    "id": "63e4fef4-a305-49f8-91b0-fd1da1b25897",
+    "email": "griffen0x1b@gmail.com",
+    "subscribedAt": "2026-05-20T14:16:11.109Z",
+    "source": "admin-portal"
+  },
+  {
+    "id": "6e5bfe55-08ee-4abb-8d5e-7f6664e532a9",
+    "email": "samuel.nwatu@gmai.com",
+    "subscribedAt": "2026-05-20T15:22:52.062Z",
+    "source": "blog-newsletter"
+  }
+]
